@@ -14,16 +14,16 @@ async def cmd_list(bot: BOT, message: Message) -> None:
     cmd = message.input.strip()
 
     if not cmd:
-        await message.reply(text=get_cmds(), del_in=30)
+        await message.reply(text=get_cmds(), del_in=0)
         return
 
     if cmd not in Config.CMD_DICT.keys():
-        await message.reply(text=f"Invalid <b>{cmd}</b>, check {message.trigger}help", del_in=5)
+        await message.reply(text=f"Invalid <b>{cmd}</b>, check {message.trigger}help", del_in=0)
         return
 
     doc_string = Config.CMD_DICT[cmd].doc
     help_str = "\n".join([x.replace("    ", "", 1) for x in doc_string.splitlines()])
-    await message.reply(text=f"<pre language=java>{help_str}</pre>", del_in=30)
+    await message.reply(text=f"<pre language=java>{help_str}</pre>", del_in=0)
 
 
 def get_cmds() -> str:
